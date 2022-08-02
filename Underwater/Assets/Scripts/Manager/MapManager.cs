@@ -26,13 +26,17 @@ public class MapManager : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        while (true)
+        while (GameManager.InsGameManager.isFinish == false)
         {
-            float r = Random.Range(-1, 1);
-            Vector3 pos1 = new Vector3(Mathf.Cos(r), Mathf.Sin(r), 0f);
+            var degrees = UnityEngine.Random.Range(0, 360);
+            var radians = degrees * Mathf.Deg2Rad;
+            var x = Mathf.Cos(radians);
+            var y = Mathf.Sin(radians);
+            Vector3 pos1 = new Vector3(x, y, 0f);
             Vector3 posRadius = pos1 * radiusAroundPlayer;
             yield return new WaitForSeconds(3f);
-            Instantiate(PrefabsManager.i.PiratePrefabs, posRadius, Quaternion.identity);
+            if(GameManager.InsGameManager.isFinish == false)
+                Instantiate(PrefabsManager.i.PiratePrefabs, posRadius, Quaternion.identity);
         }
     }
 

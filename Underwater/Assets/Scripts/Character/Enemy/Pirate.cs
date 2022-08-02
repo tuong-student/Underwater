@@ -10,7 +10,7 @@ public class Pirate : MonoBehaviour
     #endregion
 
     #region Stats
-    float speed = 10f;
+    float speed = 30f;
     Vector3 dir;
     int health = 1;
     bool isDead;
@@ -41,6 +41,12 @@ public class Pirate : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             HitPlayer();
+        }
+
+        if (collision.gameObject.CompareTag("Treasure"))
+        {
+            //GameManager.InsGameManager.isReachTreasure = true;
+            //Destroy(collision.gameObject);
         }
     }
 
